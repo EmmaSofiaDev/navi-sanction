@@ -2,6 +2,7 @@
 ### *Autonomous Maritime War-Risk & AIS Statutory Contradiction Arbitration Engine*
 
 [![Sanity Content Lake](https://img.shields.io/badge/Powered_By-Sanity_Content_Lake-f03e2f?style=for-the-badge&logo=sanity)](https://sanity.io)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-GitHub_Pages-00e599?style=for-the-badge&logo=github)](https://emmasofiadev.github.io/navi-sanction/)
 [![Next.js 16](https://img.shields.io/badge/Frontend-Next.js_16_Turbopack-black?style=for-the-badge&logo=next.js)](https://nextjs.org)
 [![TypeScript 5](https://img.shields.io/badge/Language-TypeScript_5-3178c6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org)
 [![Pure Vanilla CSS](https://img.shields.io/badge/Styling-Pure_Vanilla_CSS-00e599?style=for-the-badge)](https://developer.mozilla.org/en-US/docs/Web/CSS)
@@ -16,6 +17,7 @@
 
 > **Submission for The Sanity Challenge:**  
 > **Track:** *Path One — Ship an agent that queries real content.*  
+> **Live Interactive Demo:** [https://emmasofiadev.github.io/navi-sanction/](https://emmasofiadev.github.io/navi-sanction/)  
 > **Built by:** [Emma Sofia](https://github.com/EmmaSofiaDev) ([@emmasofia](https://dev.to/emmasofia) on Dev.to).
 
 ---
