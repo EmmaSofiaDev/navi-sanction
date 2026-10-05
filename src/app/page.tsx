@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { runArbitration } from '@/lib/arbitrationEngine';
 import { 
   Anchor, 
   Database, 
@@ -62,27 +63,22 @@ export default function Home() {
   }, []);
 
   // Fetch arbitration whenever cockpit inputs change
-  const fetchArbitration = async () => {
+  const fetchArbitration = () => {
     try {
-      const res = await fetch('/api/arbitration', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          zoneId,
-          vesselName: activeVessel.name,
-          imoNumber: activeVessel.imo,
-          threatLevel,
-          hasEscort,
-          aisStatus: isAisDark ? 'DARK' : 'BROADCASTING',
-        }),
+      const data = runArbitration({
+        zoneId,
+        vesselName: activeVessel.name,
+        imoNumber: activeVessel.imo,
+        threatLevel,
+        hasEscort,
+        aisStatus: isAisDark ? 'DARK' : 'BROADCASTING',
       });
-      const data = await res.json();
       if (data.success) {
         setArbitrationData(data);
         if (data.arbitration.activePrecedent) {
           setDecisionsHistory(prev => {
-            const exists = prev.some(p => p.decisionId === data.arbitration.activePrecedent.decisionId);
-            return exists ? prev : [data.arbitration.activePrecedent, ...prev];
+            const exists = prev.some(p => p.decisionId === data.arbitration.activePrecedent!.decisionId);
+            return exists ? prev : [data.arbitration.activePrecedent!, ...prev];
           });
         }
       }

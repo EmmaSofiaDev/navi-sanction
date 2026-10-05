@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { persistDecision } from '@/lib/arbitrationEngine';
 import { 
   ShieldCheck, 
   X, 
@@ -40,22 +41,17 @@ export const DecisionModal: React.FC<DecisionModalProps> = ({
     setLoading(true);
 
     try {
-      const res = await fetch('/api/mutate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          transitZoneId: zoneId,
-          vesselName: 'MV Nordic Sentinel',
-          imoNumber: 'IMO-9845210',
-          adjudicatedAction: action,
-          statutoryDefenseClause: defenseClause,
-          insuranceWarrantyWaiverCode: waiverCode,
-          authorizingDirector: director,
-          rationale,
-        }),
+      const data = await persistDecision({
+        transitZoneId: zoneId,
+        vesselName: 'MV Nordic Sentinel',
+        imoNumber: 'IMO-9845210',
+        adjudicatedAction: action,
+        statutoryDefenseClause: defenseClause,
+        insuranceWarrantyWaiverCode: waiverCode,
+        authorizingDirector: director,
+        rationale,
       });
 
-      const data = await res.json();
       if (data.success) {
         audioEngine.playSuccessChime();
         setPersistedResult(data);
